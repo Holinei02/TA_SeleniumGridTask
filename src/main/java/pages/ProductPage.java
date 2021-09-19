@@ -7,16 +7,16 @@ import org.openqa.selenium.support.FindBy;
 
 public class ProductPage extends BasePage {
 
-    @FindBy(xpath = "//div[@class='add-to-cart__button-wrapper']/button[contains(@class,'add-to-cart__button')]")
+    @FindBy(xpath = "//div[contains(@class,'ng-star')]/button[contains(@class,'add-product card__button')]")
     private WebElement addToCartButton;
 
-    @FindBy(xpath = "//div[@class='success-popup__shopping-wrapper']//h3[@class='success-popup__success-message']")
+    @FindBy(xpath = "//div[contains(@class,'basket-container--header')]")
     private WebElement addToCartPopupHeader;
 
-    @FindBy(xpath = "//a[contains(text(),'Continue shopping')]")
+    @FindBy(xpath = "//button[contains(@class,'btn--3')]")
     private WebElement continueShoppingButton;
 
-    @FindBy(xpath = "//a[contains(text(),'Continue to cart')]")
+    @FindBy(xpath = "//button[contains(@class,'purchase-btn')]")
     private WebElement continueToCartButton;
 
     public ProductPage(WebDriver driver) {
@@ -39,16 +39,8 @@ public class ProductPage extends BasePage {
         continueShoppingButton.isDisplayed();
     }
 
-    public String getAddToCartPopupHeaderText() {
-        return addToCartPopupHeader.getText();
-    }
-
     public void isContinueToCartButtonVisible() {
         continueToCartButton.isDisplayed();
-    }
-
-    public void clickContinueToCartButton() {
-        continueToCartButton.click();
     }
 
     public WebElement getAddToCartPopupHeader() {

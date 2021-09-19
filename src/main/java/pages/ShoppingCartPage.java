@@ -7,8 +7,11 @@ import org.openqa.selenium.support.FindBy;
 public class ShoppingCartPage extends BasePage {
 
 
-    @FindBy(xpath = "//h1[@class='checkout-header__heading']")
+    @FindBy(xpath = "//div[contains(@class, 'basket-container--header')]")
     private WebElement shoppingCartTitle;
+
+    @FindBy(xpath = "//p[contains(@class,'basket-empty')]")
+    private WebElement shoppingCartEmptyMessage;
 
     @FindBy(xpath = "//button[@class='checkout-order-summary__continue-btn']")
     private WebElement checkoutButton;
@@ -27,6 +30,8 @@ public class ShoppingCartPage extends BasePage {
     public boolean isShoppingCartTitleVisible() {
         return shoppingCartTitle.isDisplayed();
     }
+
+    public boolean isShoppingCartEmpty() { return shoppingCartEmptyMessage.isDisplayed();}
 
     public void clickCheckoutButton() {
         checkoutButton.click();

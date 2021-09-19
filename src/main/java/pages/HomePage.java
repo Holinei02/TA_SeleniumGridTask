@@ -8,17 +8,9 @@ import org.openqa.selenium.support.FindBy;
 
 public class HomePage extends BasePage {
 
-    @FindBy(xpath = "//header[contains(@class, 'global-header global-header--sticky') or @class='page-header']")
-    private WebElement header;
 
-    @FindBy(xpath = "//footer")
-    private WebElement footer;
-
-    @FindBy(xpath = "//div[contains(@class,'cart-button')]")
+    @FindBy(xpath = "//span[contains(@class,'header__cart-icon')]")
     private WebElement cartIcon;
-
-    @FindBy(xpath = ".//a[contains(@class, 'header-top-bar__input__language')]/span")
-    private WebElement languageButton;
 
     @FindBy(xpath = "//span[contains(@class,'login-opener-icon')]")
     private WebElement loginButton;
@@ -26,19 +18,19 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//button[contains(@class, 'enterprise-account__button_register')]")
     private WebElement registerButton;
 
-    @FindBy(xpath = "//div[@class='gigya-screen-dialog-main']")
-    private WebElement signInPopup;
+    @FindBy(xpath = "//div[@id='popup-login']")
+    private WebElement loginPopUp;
 
-    @FindBy(xpath = ".//input[@name='username'][@placeholder='Email *']")
-    private WebElement emailField;
+    @FindBy(xpath = "//input[@id='user_login']")
+    private WebElement loginField;
 
-    @FindBy(xpath = ".//input[@name='password'][contains(@placeholder, '*')]")
+    @FindBy(xpath = "//input[@id='user_pass']")
     private WebElement passwordField;
 
-    @FindBy(xpath = "//div[@class='gigya-screen-dialog-close']")
-    private WebElement signInPopupCloseButton;
+    @FindBy(xpath = "//button[contains(@class, 'fancybox-close')]")
+    private WebElement loginPopUpCloseButton;
 
-    @FindBy(xpath = "//div[@class='header-store parbase']//span[contains(@class,'global-store__content__section__store-name')]")
+    @FindBy(xpath = "//a[contains(@class, 'basket-empty__message--link')]")
     private WebElement storeButton;
 
     @FindBy(xpath = "//div[@class='global-store__popup-wrapper']//div[@class='store-search']")
@@ -53,33 +45,24 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//div[contains(@class,'wishlist-button')]//div[contains(@class,'items-count')]")
     private WebElement wishListProductsCount;
 
+    @FindBy(xpath = "//h1")
+    private WebElement productsToCompare;
+
 
     public HomePage(WebDriver driver) {
         super(driver);
     }
 
 
-    public void isHeaderVisible() {
-        header.isDisplayed();
-    }
-
-    public void isFooterVisible() {
-        footer.isDisplayed();
-    }
-
     public void isCartIconVisible() {
         cartIcon.isDisplayed();
     }
 
-    public String getLanguageButtonText() {
-        return languageButton.getText();
-    }
-
-    public void isSignInButtonVisible() {
+    public void isLoginButtonVisible() {
         loginButton.isDisplayed();
     }
 
-    public void clickSignInButton() {
+    public void clickLoginButton() {
         loginButton.click();
     }
 
@@ -87,28 +70,26 @@ public class HomePage extends BasePage {
         registerButton.isDisplayed();
     }
 
-    public boolean isEmailFieldVisible() {
-        return emailField.isDisplayed();
+    public boolean isLoginFieldVisible() {
+        return loginField.isDisplayed();
     }
 
     public boolean isPasswordFieldVisible() {
         return passwordField.isDisplayed();
     }
 
-    public WebElement getSignInPopup() {
-        return signInPopup;
+    public WebElement getLoginPopUp() {
+        return loginPopUp;
     }
 
-    public void clickSignInPopupCloseButton() {
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click()", signInPopupCloseButton);
+    public WebElement getCartIcon(){return cartIcon;}
+
+    public void clickLoginPopUpCloseButton() {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click()", loginPopUpCloseButton);
     }
 
     public void clickStoreButton() {
         storeButton.click();
-    }
-
-    public boolean isStorePopupVisible() {
-        return storePopup.isDisplayed();
     }
 
     public void isSearchFieldVisible() {
@@ -119,21 +100,10 @@ public class HomePage extends BasePage {
         cartIcon.click();
     }
 
-    public void clickLanguageButton() {
-        languageButton.click();
-    }
-
     public void enterTextToSearchField(final String searchText) {
         searchField.clear();
         searchField.sendKeys(searchText, Keys.ENTER);
     }
 
-    public WebElement getWishListProductsCount() {
-        return wishListProductsCount;
-    }
-
-    public String getAmountOfProductsInWishList() {
-        return wishListProductsCount.getText();
-    }
 
 }
